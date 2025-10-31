@@ -98,7 +98,7 @@ derr0   = derr00(iu00);
 dres0 = tsdetrend(t0,d0,derr0,period,teq); 
 
 %---------- 3. exception time windows ----------
-if nargin<5 || isempty(timeException)
+if nargin<7 || isempty(timeException)
     if isempty(teq0)
         timeException = [];
     else
@@ -688,6 +688,7 @@ end
 function s = robust_sigma(x)
 s = mad(diff(x))/sqrt(2);  
 end
+
 
 
 
