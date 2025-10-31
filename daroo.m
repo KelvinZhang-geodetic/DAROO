@@ -14,6 +14,7 @@ function res = daroo(t,d,derr0,k,teq,period,timeException,ismore)
 % ismore, whether refined jump detection should be performed on residuals, default=0
 %Outputs
 %res, a struct array with fields as follows
+% res.data, the original data that contain [time obs obsErr]
 % res.istep, index of Jump epoches
 % res.io, index of outlier epoches
 % res.iu, index of usable epoches
@@ -687,4 +688,5 @@ end
 function s = robust_sigma(x)
 s = mad(diff(x))/sqrt(2);  
 end
+
 
