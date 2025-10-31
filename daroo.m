@@ -25,7 +25,7 @@ function res = daroo(t,d,derr0,k,teq,period,timeException,ismore)
 % res.dperiod, period term for usable epoches
 % res.dresi, residuals after removing offsets and outliers
 %originally on 2025-08-12
-%modified on 2025-09-28
+%modified on 2025-10-31
 %Keliang Zhang
 %Institute of Geology, CEA
 if nargin<3 || isempty(derr0),    derr = ones(size(t));end
@@ -688,5 +688,6 @@ end
 function s = robust_sigma(x)
 s = mad(diff(x))/sqrt(2);  
 end
+
 
 
