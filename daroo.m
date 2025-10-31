@@ -1,15 +1,15 @@
 function res = daroo(t,d,derr0,k,teq,period,timeException,ismore)
 % Detection And Removal of Offsets and Outliers (DAROO)
-% [tu,du,iu,io,istep,dresi] = daroo(t,d,derr0,k,teq,period,timeException)
+% res = daroo(t,d,derr0,k,teq,period,timeException)
 %Inputs
 % required
-% t,time£¨yyyy.ddd)
-% d,observations£¨mm£©
+% t,timeï¼ˆyyyy.ddd)
+% d,observationsï¼ˆmmï¼‰
 % optional
 % derr0,formal error of observations
-% k, factor for	MAD£¬default=3
+% k, factor for	MADï¼Œdefault=3
 % teq, given event occurrence times
-% period, seasonal periods, 1, 0.5 for annual and semi-annual, respectively£¬ default=[]
+% period, seasonal periods, 1, 0.5 for annual and semi-annual, respectivelyï¼Œ default=[]
 % timeException, time windows to be excluded, in format [t11 t12; t21 t22;...]. such as postseismic stage 
 % ismore, whether refined jump detection should be performed on residuals, default=0
 %Outputs
@@ -86,7 +86,7 @@ end
 %Step2. outlier detection and removal % 
 %==================================================================================   
 %-------first round outliers removal  ----------
-i0      = gross(xsn,k);                            % 3¦Ò+leave-one-out
+i0      = gross(xsn,k);                            % 3Ïƒ+leave-one-out
 io0     = isn(i0);                                 % global indices
 iu00    = setdiff(its00,[io0;isa]);                % sustained indices
 t0      = t00(iu00);
@@ -243,7 +243,7 @@ t=t(:);y=y(:);nt=length(t);
 idxStep = [];
 
 [f, P] = lombscargle(y, t, 'normalized',  0.5, 4);
-idx = f > 0.05 & f < 0.5;               % 0.05¨C0.5 cpy
+idx = f > 0.05 & f < 0.5;               % 0.05â€“0.5 cpy
 slope = polyfit(log10(f(idx)), log10(P(idx)), 1);
 flickerFlag = abs(slope(1) + 1) < 0.3; 
 
@@ -501,8 +501,8 @@ function [pxx, f] = lombscargle(x, t, normalized, fmax, ofac)
 %   x         : signal vector
 %   t         : time
 %   normalized: true 
-%   fmax      : max freq (cycles/unit t)£¬[]¡úNyquist
-%   ofac      : oversampling factor£¬default 4
+%   fmax      : max freq (cycles/unit t)ï¼Œ[]â†’Nyquist
+%   ofac      : oversampling factorï¼Œdefault 4
 %outputs:
 %   pxx       : normalized PSD
 %   f         : freqency (cycles/unit t)
@@ -547,14 +547,14 @@ end
 end
 
 function [idxAll, chi2Val] = detectAfterLargeJump(t, x, alpha, W)
-% Inputs£º
-% t(N¡Á1) 
-% x(N¡Á1) residuals
+% Inputsï¼š
+% t(NÃ—1) 
+% x(NÃ—1) residuals
 % alpha confidence level
 % W 
-% Outputs£º
-%  idxAll(K¡Á1) 
-%  chi2Val(K¡Á1) ¦Ö2 value
+% Outputsï¼š
+%  idxAll(KÃ—1) 
+%  chi2Val(KÃ—1) Ï‡2 value
 if nargin < 3, alpha = 0.01; end
 if nargin < 4, W = 1000; end
 N = numel(x);  
@@ -687,3 +687,4 @@ end
 function s = robust_sigma(x)
 s = mad(diff(x))/sqrt(2);  
 end
+
